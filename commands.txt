@@ -1,0 +1,17 @@
+  docker build -f ./tomcat2.df -t demo/tomcat:8 .
+  
+  docker images
+  docker info
+  docker version
+  docker ps -aq
+  docker rmi -f e97505077385
+  docker ps
+  docker images
+
+  docker run -ti -d -p 8080:8080 --name tomcatdev -v "$PWD":/mnt/ demo/tomcat:8
+  
+  docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ec6a59a9519b
+  docker exec ec6a59a9519b ifconfig
+  docker exev -ti tomcatdev ifconfig
+
+  docker run -ti -d -p 3307:3306 --name mysqldev -e MYSQL_ROOT_PASSWORD=r00t -v "$PWD":/mnt/ mysql:5.7
